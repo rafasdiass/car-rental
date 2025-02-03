@@ -1,4 +1,4 @@
-// 🔳 Estilizando o Formulário de Locatários
+// 🔳 Estilizando o Formulário de Aluguel
 form {
     display: flex;
     flex-direction: column;
@@ -25,7 +25,9 @@ form {
         margin-bottom: 6px;
     }
 
-    input {
+    // 🔳 Ajuste de input e select usando a classe .form-control
+    input.form-control,
+    select.form-control {
         padding: 12px;
         border: 2px solid var(--border-color);
         border-radius: 8px;
@@ -63,6 +65,7 @@ app-button {
     text-transform: uppercase;
     cursor: pointer;
 
+    // Exemplo de classes se estiver usando [color]="primary" e [color]="danger", etc.
     &.btn-primary {
         background-color: var(--primary-color);
         border: none;
