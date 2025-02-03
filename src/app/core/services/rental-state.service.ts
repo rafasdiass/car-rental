@@ -1,4 +1,4 @@
-import { Injectable, signal, computed, effect } from '@angular/core';
+import { Injectable, signal, computed } from '@angular/core';
 import { Rental } from '../models/rental';
 import { RentalApiService } from './rental.service';
 import { UserStateService } from './user-state.service';
@@ -10,7 +10,33 @@ import { Vehicle } from '../models/vehicle';
   providedIn: 'root',
 })
 export class RentalStateService {
-  rentals = signal<Rental[]>([]);
+  /**
+   * Armazena a lista "bruta" de aluguéis vindos da API
+   */
+  private _rentals = signal<Rental[]>([]);
+
+  /**
+   * Expor um getter para acessar `_rentals`
+   */
+  get rentals() {
+    return this._rentals;
+  }
+
+  /**
+   * Lista de aluguéis com dados de usuário e veículo "conectados"
+   * Essa lista é derivada (computed) com base em `_rentals`, `UserStateService` e `VehicleStateService`.
+   */
+  rentalsWithMetadata = computed(() => {
+    const users = this.userState.users();
+    const vehicles = this.vehicleState.vehicles();
+
+    return this._rentals().map((rental) => ({
+      ...rental,
+      userName: this.findUserName(rental.userId, users),
+      vehicleModel: this.findVehicleModel(rental.vehicleId, vehicles),
+    }));
+  });
+
   selectedRental = signal<Rental | null>(null);
   isModalOpen = signal<boolean>(false);
 
@@ -19,52 +45,23 @@ export class RentalStateService {
     private userState: UserStateService,
     private vehicleState: VehicleStateService
   ) {
+    // Carregamos a lista inicial de rentals
     this.loadRentals();
 
-    // 🚀 Atualiza os rentals automaticamente sempre que users ou vehicles mudam
-    effect(() => {
-      this.updateRentals();
-    });
+    // Se quiser, podemos também carregar usuários e veículos aqui,
+    // para garantir que quando a tela carregar, já temos estes dados:
+    this.userState.loadUsers();
+    this.vehicleState.loadVehicles();
   }
 
   /**
-   * Carrega a lista de aluguéis da API
+   * Carrega a lista de aluguéis da API.
    */
   loadRentals(): void {
     this.rentalApiService.getAllRentals().subscribe({
-      next: (rentals) => this.rentals.set(rentals),
+      next: (rentals) => this._rentals.set(rentals),
       error: (err) => console.error('❌ Erro ao carregar aluguéis:', err),
     });
-  }
-
-  /**
-   * Computa os aluguéis e adiciona os nomes dos usuários e modelos dos veículos.
-   */
-  updateRentals(): void {
-    const users = this.userState.users();
-    const vehicles = this.vehicleState.vehicles();
-
-    const updatedRentals = this.rentals().map((rental) => ({
-      ...rental,
-      userName: this.findUserName(rental.userId, users),
-      vehicleModel: this.findVehicleModel(rental.vehicleId, vehicles),
-    }));
-
-    this.rentals.set(updatedRentals);
-  }
-
-  /**
-   * Retorna o nome do usuário pelo ID.
-   */
-  private findUserName(userId: string, users: User[]): string {
-    return users.find((u) => u.id === userId)?.name ?? 'Desconhecido';
-  }
-
-  /**
-   * Retorna o modelo do veículo pelo ID.
-   */
-  private findVehicleModel(vehicleId: string, vehicles: Vehicle[]): string {
-    return vehicles.find((v) => v.id === vehicleId)?.model ?? 'Desconhecido';
   }
 
   /**
@@ -108,5 +105,19 @@ export class RentalStateService {
       next: () => this.loadRentals(),
       error: (err) => console.error('❌ Erro ao excluir aluguel:', err),
     });
+  }
+
+  /**
+   * Retorna o nome do usuário pelo ID.
+   */
+  private findUserName(userId: string, users: User[]): string {
+    return users.find((u) => u.id === userId)?.name ?? 'Desconhecido';
+  }
+
+  /**
+   * Retorna o modelo do veículo pelo ID.
+   */
+  private findVehicleModel(vehicleId: string, vehicles: Vehicle[]): string {
+    return vehicles.find((v) => v.id === vehicleId)?.model ?? 'Desconhecido';
   }
 }
