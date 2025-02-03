@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
         <!-- Logo -->
         <a class="navbar-brand" href="#">
@@ -7,8 +7,8 @@
 
         <!-- Botões de navegação -->
         <ul class="navbar-nav ms-auto">
-            <li class="nav-item" *ngFor="let route of navigationService.routes">
-                <app-button [text]="route.replace('/', '') | titlecase" [color]="isActive(route) ? 'primary' : 'light'"
+            <li class="nav-item" *ngFor="let route of menuRoutes">
+                <app-button [text]="route | titlecase" [color]="isActive(route) ? 'primary' : 'secondary'"
                     [icon]="getIcon(route)" (action)="navigate(route)">
                 </app-button>
             </li>

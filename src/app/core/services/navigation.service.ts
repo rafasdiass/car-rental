@@ -2,34 +2,32 @@ import { Injectable, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, from } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
-
-/**
- * Define os caminhos das rotas disponíveis para garantir consistência.
- */
-export type AppRoute = '/dashboard' | '/vehicles' | '/users' | '/rentals';
+import { routes } from '../../app.routes';
 
 @Injectable({
   providedIn: 'root',
 })
 export class NavigationService {
-  private activePage = signal<AppRoute>('/dashboard');
+  private activePage = signal<string>('/dashboard');
 
   /**
-   * Lista centralizada de rotas disponíveis
+   * Obtém automaticamente as rotas do `app.routes.ts`, garantindo que sejam `string[]`
    */
-  readonly routes: AppRoute[] = [
-    '/dashboard',
-    '/vehicles',
-    '/users',
-    '/rentals',
-  ];
+  readonly availableRoutes: string[] = routes
+    .map((route) => route.path ?? '') // Garante que `undefined` vira string vazia
+    .filter((path) => path && path !== '**'); // Remove strings vazias e rota coringa
 
   constructor(private router: Router) {}
 
   /**
    * Navega para uma rota válida e define a página ativa.
    */
-  navigateTo(route: AppRoute): Observable<boolean> {
+  navigateTo(route: string): Observable<boolean> {
+    if (!this.availableRoutes.includes(route)) {
+      console.warn(`⚠️ Rota inválida: ${route}`);
+      return from(Promise.resolve(false)); // Retorna um Observable falso para evitar erro
+    }
+
     return from(this.router.navigate([route])).pipe(
       tap((success) => {
         if (success) {
@@ -46,14 +44,14 @@ export class NavigationService {
   /**
    * Obtém a página ativa atual.
    */
-  getActivePage(): AppRoute {
+  getActivePage(): string {
     return this.activePage();
   }
 
   /**
    * Verifica se a rota fornecida corresponde à página ativa armazenada.
    */
-  isActivePage(route: AppRoute): boolean {
+  isActivePage(route: string): boolean {
     return this.activePage() === route;
   }
 

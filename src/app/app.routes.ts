@@ -7,8 +7,8 @@ import { VehiclePageComponent } from './features/vehicles/vehicle-page/vehicle-p
 export const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' }, // Inicia no Dashboard
   { path: 'dashboard', component: DashboardComponent },
-  { path: 'rentals', component: RentalsPageComponent },
-  { path: 'users', component: UserPageComponent }, // Corrigido para "users"
-  { path: 'vehicles', component: VehiclePageComponent },
+  { path: 'veiculos', component: VehiclePageComponent },
+  { path: 'alugueis', component: RentalsPageComponent },
+  { path: 'locatarios', component: UserPageComponent }, // Corrigido para "users"
   { path: '**', redirectTo: 'dashboard' }, // Se não encontrar a rota, volta para Dashboard
 ];
