@@ -1,0 +1,104 @@
+// 🔳 Estilizando o Formulário de Locatários
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 24px;
+    background: var(--card-background);
+    border-radius: 12px;
+    box-shadow: 0 6px 14px var(--shadow-dark);
+    color: var(--text-color);
+
+    .form-title {
+        font-size: 22px;
+        font-weight: bold;
+        color: var(--primary-color);
+        text-align: center;
+        margin-bottom: 20px;
+        text-transform: uppercase;
+    }
+
+    label {
+        font-weight: bold;
+        font-size: 16px;
+        color: var(--text-color);
+        margin-bottom: 6px;
+    }
+
+    input {
+        padding: 12px;
+        border: 2px solid var(--border-color);
+        border-radius: 8px;
+        font-size: 16px;
+        background: var(--secondary-color);
+        color: var(--input-text);
+        transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+
+        &:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 10px var(--primary-dark);
+            outline: none;
+        }
+    }
+
+    // 🔳 Ajuste dos Botões dentro do Formulário
+    .d-flex {
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+        margin-top: 16px;
+    }
+}
+
+// 🔳 Botões Ajustados para Melhor Visualização
+app-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+    padding: 10px 16px;
+    font-size: 14px;
+    text-transform: uppercase;
+    cursor: pointer;
+
+    &.btn-primary {
+        background-color: var(--primary-color);
+        border: none;
+        color: var(--white);
+
+        &:hover {
+            background-color: var(--primary-dark);
+            box-shadow: 0 4px 10px rgba(255, 127, 80, 0.3);
+        }
+    }
+
+    &.btn-danger {
+        background-color: var(--highlight-color);
+        border: none;
+        color: var(--white);
+
+        &:hover {
+            background-color: var(--highlight-dark);
+            box-shadow: 0 4px 10px rgba(255, 87, 34, 0.3);
+        }
+    }
+}
+
+// 🔳 Melhorando a Responsividade
+@media (max-width: 768px) {
+    form {
+        padding: 18px;
+    }
+
+    .d-flex {
+        flex-direction: column;
+        gap: 10px;
+
+        app-button {
+            width: 100%;
+            text-align: center;
+        }
+    }
+}

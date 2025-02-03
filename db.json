@@ -22,9 +22,43 @@
   "users": [
     {
       "id": "1",
-      "firstName": "John",
-      "lastName": "Smith",
-      "email": "john@example.com"
+      "name": "José da Silva",
+      "email": "jose.silva@example.com",
+      "phone": "(11) 91234-5678",
+      "document": "123.456.789-00",
+      "address": "Rua das Acácias, 101 - São Paulo, SP"
+    },
+    {
+      "id": "2",
+      "name": "Maria Oliveira",
+      "email": "maria.oliveira@example.com",
+      "phone": "(21) 99876-5432",
+      "document": "987.654.321-00",
+      "address": "Av. Paulista, 2000 - São Paulo, SP"
+    },
+    {
+      "id": "3",
+      "name": "Carlos Santos",
+      "email": "carlos.santos@example.com",
+      "phone": "(31) 92345-6789",
+      "document": "321.654.987-00",
+      "address": "Rua dos Ipês, 50 - Belo Horizonte, MG"
+    },
+    {
+      "id": "4",
+      "name": "Ana Souza",
+      "email": "ana.souza@example.com",
+      "phone": "(41) 94567-1234",
+      "document": "654.987.321-00",
+      "address": "Rua XV de Novembro, 300 - Curitiba, PR"
+    },
+    {
+      "id": "5",
+      "name": "Pedro Lima",
+      "email": "pedro.lima@example.com",
+      "phone": "(51) 97890-1234",
+      "document": "789.123.456-00",
+      "address": "Av. Bento Gonçalves, 456 - Porto Alegre, RS"
     }
   ]
 }

@@ -1,1 +1,18 @@
-<p>user-page works!</p>
+<div class="container user-page">
+    <h1 class="text-center my-4">👤 Gerenciamento de Locatários</h1>
+
+    <!-- Botão para adicionar novo locatário -->
+    <div class="text-end mb-3">
+        <app-button text="➕ Adicionar Locatário" color="primary" (action)="openModal()"></app-button>
+    </div>
+
+    <!-- Lista de Locatários -->
+    <app-user-list [users]="userState.users()" (edit)="userState.selectUser($event); openModal()"
+        (delete)="userState.deleteUser($event)">
+    </app-user-list>
+
+    <!-- Modal para Cadastro/Edição -->
+    <app-user-form *ngIf="isModalOpen()" [user]="userState.selectedUser() ?? null"
+        (save)="userState.saveUser($event); closeModal()" (cancel)="closeModal()">
+    </app-user-form>
+</div>
