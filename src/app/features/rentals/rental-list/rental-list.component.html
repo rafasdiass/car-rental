@@ -1,1 +1,43 @@
-<p>rental-list works!</p>
+<div class="container-fluid rental-list-container">
+    <ng-container *ngIf="rentals().length > 0; else emptyState">
+        <div class="table-responsive">
+            <table class="table table-hover table-striped align-middle">
+                <thead class="table-dark">
+                    <tr>
+                        <th>#</th>
+                        <th>Locatário</th>
+                        <th>Veículo</th>
+                        <th>Data Início</th>
+                        <th>Data Fim</th>
+                        <th>Valor Total</th>
+                        <th class="text-center">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let rental of rentals(); let i = index">
+                        <td>{{ i + 1 }}</td>
+                        <td>{{ rental.userName }}</td>
+                        <td>{{ rental.vehicleModel }}</td>
+                        <td>{{ rental.startDate | formatDate }}</td>
+                        <td>{{ rental.endDate | formatDate }}</td>
+                        <td>{{ rental.totalPrice | formatCurrency }}</td>
+                        <td class="text-center">
+                            <div class="d-flex justify-content-center gap-2">
+                                <app-button text="Editar" icon="bi-pencil" color="primary" size="sm"
+                                    (action)="onEdit(rental)">
+                                </app-button>
+                                <app-button text="Excluir" icon="bi-trash" color="danger" size="sm"
+                                    (action)="onDelete(rental.id)">
+                                </app-button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </ng-container>
+
+    <ng-template #emptyState>
+        <p class="text-center text-muted mt-3">🚨 Nenhum aluguel disponível no momento.</p>
+    </ng-template>
+</div>

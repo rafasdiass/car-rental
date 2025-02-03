@@ -6,4 +6,8 @@ export interface Rental {
   endDate: string; // Data de término do aluguel (ISO 8601)
   totalPrice: number; // Valor total do aluguel
   status: 'active' | 'completed' | 'canceled'; // Status do aluguel
+
+  
+  userName?: string;
+  vehicleModel?: string;
 }

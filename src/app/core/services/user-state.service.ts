@@ -6,7 +6,7 @@ import { UserApiService } from './user-api.service';
   providedIn: 'root',
 })
 export class UserStateService {
-  users = signal<User[]>([]);
+  users = signal<User[]>([]); // ✅ Garantindo que sempre seja um array
   selectedUser = signal<User | null>(null);
   isModalOpen = signal<boolean>(false); // ✅ Controle do modal
 
@@ -22,6 +22,13 @@ export class UserStateService {
       next: (data) => this.users.set(data),
       error: (err) => console.error('❌ Erro ao carregar locatários:', err),
     });
+  }
+
+  /**
+   * Retorna a lista de locatários armazenados.
+   */
+  getUsers(): User[] {
+    return this.users(); // ✅ Agora retorna um array corretamente
   }
 
   /**

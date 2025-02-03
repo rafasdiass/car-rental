@@ -1,1 +1,17 @@
-<p>rental-page works!</p>
+<div class="container rental-page">
+    <h1 class="text-center my-4">📄 Gerenciamento de Aluguéis</h1>
+
+    <!-- Botão para adicionar um novo aluguel -->
+    <div class="text-end mb-3">
+        <app-button text="➕ Novo Aluguel" color="primary" (action)="openModal()"></app-button>
+    </div>
+
+    <!-- Lista de Aluguéis -->
+    <app-rental-list (edit)="rentalState.selectRental($event); openModal()" (delete)="rentalState.deleteRental($event)">
+    </app-rental-list>
+
+    <!-- Modal para Cadastro/Edição -->
+    <app-rental-form *ngIf="isModalOpen()" [rental]="rentalState.selectedRental() ?? null"
+        (save)="rentalState.saveRental($event); closeModal()" (cancel)="closeModal()">
+    </app-rental-form>
+</div>

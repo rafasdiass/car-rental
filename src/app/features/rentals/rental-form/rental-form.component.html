@@ -1,1 +1,63 @@
-<p>rental-form works!</p>
+<form [formGroup]="form" (ngSubmit)="submit()">
+    <h3 class="form-title">
+        {{ isEditing() ? '✏️ Editar Aluguel' : '📄 Cadastrar Aluguel' }}
+    </h3>
+
+    <!-- Seleção de Locatário -->
+    <div class="mb-3">
+        <label for="userId" class="form-label">Locatário</label>
+        <select id="userId" formControlName="userId" class="form-control" required>
+            <option *ngFor="let user of users()" [value]="user.id">
+                {{ user.name }}
+            </option>
+        </select>
+    </div>
+
+    <!-- Seleção de Veículo -->
+    <div class="mb-3">
+        <label for="vehicleId" class="form-label">Veículo</label>
+        <select id="vehicleId" formControlName="vehicleId" class="form-control" required>
+            <option *ngFor="let vehicle of vehicles()" [value]="vehicle.id">
+                {{ vehicle.model }} - {{ vehicle.plate }}
+            </option>
+        </select>
+    </div>
+
+    <!-- Data de Início -->
+    <div class="mb-3">
+        <label for="startDate" class="form-label">Data Início</label>
+        <input id="startDate" formControlName="startDate" type="date" class="form-control" required />
+        <p class="text-muted">Formatado: {{ form.value.startDate | formatDate }}</p>
+    </div>
+
+    <!-- Data de Fim -->
+    <div class="mb-3">
+        <label for="endDate" class="form-label">Data Fim</label>
+        <input id="endDate" formControlName="endDate" type="date" class="form-control" required />
+        <p class="text-muted">Formatado: {{ form.value.endDate | formatDate }}</p>
+    </div>
+
+    <!-- Valor Total -->
+    <div class="mb-3">
+        <label for="totalPrice" class="form-label">Valor Total</label>
+        <input id="totalPrice" formControlName="totalPrice" type="number" class="form-control" required />
+        <p class="text-muted">Total: {{ form.value.totalPrice | formatCurrency }}</p>
+    </div>
+
+    <!-- Status -->
+    <div class="mb-3">
+        <label for="status" class="form-label">Status</label>
+        <select id="status" formControlName="status" class="form-control" required>
+            <option value="active">Ativo</option>
+            <option value="completed">Concluído</option>
+            <option value="canceled">Cancelado</option>
+        </select>
+    </div>
+
+    <!-- Botões -->
+    <div class="d-flex justify-content-end gap-2">
+        <app-button [text]="isEditing() ? '✏️ Atualizar' : '💾 Salvar'" color="primary"
+            (action)="submit()"></app-button>
+        <app-button text="❌ Cancelar" color="secondary" (action)="cancelForm()"></app-button>
+    </div>
+</form>

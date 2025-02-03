@@ -60,5 +60,52 @@
       "document": "789.123.456-00",
       "address": "Av. Bento Gonçalves, 456 - Porto Alegre, RS"
     }
+  ],
+  "rentals": [
+    {
+      "id": "101",
+      "userId": "1",
+      "vehicleId": "2",
+      "startDate": "2025-02-01",
+      "endDate": "2025-02-07",
+      "totalPrice": 1200.00,
+      "status": "active"
+    },
+    {
+      "id": "102",
+      "userId": "2",
+      "vehicleId": "3",
+      "startDate": "2025-01-15",
+      "endDate": "2025-01-22",
+      "totalPrice": 950.00,
+      "status": "completed"
+    },
+    {
+      "id": "103",
+      "userId": "3",
+      "vehicleId": "2",
+      "startDate": "2025-02-05",
+      "endDate": "2025-02-12",
+      "totalPrice": 1300.00,
+      "status": "active"
+    },
+    {
+      "id": "104",
+      "userId": "4",
+      "vehicleId": "3",
+      "startDate": "2025-01-10",
+      "endDate": "2025-01-17",
+      "totalPrice": 980.00,
+      "status": "completed"
+    },
+    {
+      "id": "105",
+      "userId": "5",
+      "vehicleId": "2",
+      "startDate": "2025-01-20",
+      "endDate": "2025-01-27",
+      "totalPrice": 1150.00,
+      "status": "canceled"
+    }
   ]
 }

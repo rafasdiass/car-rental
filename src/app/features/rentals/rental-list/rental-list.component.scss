@@ -1,0 +1,64 @@
+// 📌 Estilo da Lista de Aluguéis
+.rental-list-container {
+    background: var(--card-background);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0px 6px 14px var(--shadow-dark);
+    color: var(--text-color);
+
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+
+        th {
+            background-color: var(--primary-color);
+            color: var(--white);
+            text-align: center;
+            padding: 12px;
+            font-size: 16px;
+            font-weight: bold;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        td {
+            text-align: center;
+            vertical-align: middle;
+            padding: 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        tbody {
+            tr {
+                transition: background-color 0.3s ease-in-out;
+
+                &:hover {
+                    background-color: var(--primary-dark);
+                }
+            }
+        }
+    }
+
+    .empty-message {
+        font-size: 18px;
+        font-weight: bold;
+        color: var(--white);
+        text-align: center;
+        margin-top: 20px;
+    }
+}
+
+// 📌 Ajuste de Layout para Telas Pequenas
+@media (max-width: 768px) {
+    .rental-list-container {
+        padding: 15px;
+    }
+
+    .table {
+        font-size: 14px;
+    }
+
+    .app-button {
+        font-size: 12px;
+        padding: 6px 10px;
+    }
+}

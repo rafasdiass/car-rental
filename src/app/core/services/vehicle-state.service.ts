@@ -6,7 +6,7 @@ import { VehicleApiService } from './vehicle-api.service';
   providedIn: 'root',
 })
 export class VehicleStateService {
-  vehicles = signal<Vehicle[]>([]);
+  vehicles = signal<Vehicle[]>([]); // ✅ Garantindo que sempre seja um array
   selectedVehicle = signal<Vehicle | null>(null);
   isModalOpen = signal<boolean>(false); // ✅ Controle do modal
 
@@ -22,6 +22,13 @@ export class VehicleStateService {
       next: (data) => this.vehicles.set(data),
       error: (err) => console.error('❌ Erro ao carregar veículos:', err),
     });
+  }
+
+  /**
+   * Retorna a lista de veículos armazenados.
+   */
+  getVehicles(): Vehicle[] {
+    return this.vehicles(); // ✅ Agora retorna um array corretamente
   }
 
   /**

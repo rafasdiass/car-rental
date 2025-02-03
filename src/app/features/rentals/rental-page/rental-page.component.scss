@@ -1,0 +1,40 @@
+// 📌 Estilização do Container Principal
+.rental-page {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 24px;
+}
+
+// 🎯 Posicionamento do Título
+.rental-page h1 {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+// 📍 Posicionamento do Botão "Novo Aluguel"
+.rental-page .text-end {
+    display: flex;
+    justify-content: flex-end;
+}
+
+// 📋 Ajuste da Lista de Aluguéis
+app-rental-list {
+    flex-grow: 1;
+}
+
+// 📌 Ajuste do Modal para Aluguéis
+app-rental-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+// 📱 Responsividade
+@media (max-width: 768px) {
+    .rental-page {
+        padding: 16px;
+    }
+}
