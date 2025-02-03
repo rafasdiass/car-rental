@@ -27,24 +27,33 @@
     <div class="mb-3">
         <label for="startDate" class="form-label">Data Início</label>
         <input id="startDate" formControlName="startDate" type="date" class="form-control" required />
-        <p class="text-muted">Formatado: {{ form.value.startDate | formatDate }}</p>
+        <p class="text-muted">
+            Formatado:
+            {{ form.value.startDate | formatDate }}
+        </p>
     </div>
 
     <!-- Data de Fim -->
     <div class="mb-3">
         <label for="endDate" class="form-label">Data Fim</label>
         <input id="endDate" formControlName="endDate" type="date" class="form-control" required />
-        <p class="text-muted">Formatado: {{ form.value.endDate | formatDate }}</p>
+        <p class="text-muted">
+            Formatado:
+            {{ form.value.endDate | formatDate }}
+        </p>
     </div>
 
     <!-- Valor Total -->
     <div class="mb-3">
         <label for="totalPrice" class="form-label">Valor Total</label>
         <input id="totalPrice" formControlName="totalPrice" type="number" class="form-control" required />
-        <p class="text-muted">Total: {{ form.value.totalPrice | formatCurrency }}</p>
+        <p class="text-muted">
+            Total:
+            {{ form.value.totalPrice | formatCurrency }}
+        </p>
     </div>
 
-    <!-- Status -->
+    <!-- Status (opcional para edição) -->
     <div class="mb-3">
         <label for="status" class="form-label">Status</label>
         <select id="status" formControlName="status" class="form-control" required>
@@ -58,6 +67,7 @@
     <div class="d-flex justify-content-end gap-2">
         <app-button [text]="isEditing() ? '✏️ Atualizar' : '💾 Salvar'" color="primary"
             (action)="submit()"></app-button>
+
         <app-button text="❌ Cancelar" color="secondary" (action)="cancelForm()"></app-button>
     </div>
 </form>

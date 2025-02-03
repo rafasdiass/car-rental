@@ -10,6 +10,7 @@
                         <th>Data Início</th>
                         <th>Data Fim</th>
                         <th>Valor Total</th>
+                        <th>Status</th>
                         <th class="text-center">Ações</th>
                     </tr>
                 </thead>
@@ -21,6 +22,15 @@
                         <td>{{ rental.startDate | formatDate }}</td>
                         <td>{{ rental.endDate | formatDate }}</td>
                         <td>{{ rental.totalPrice | formatCurrency }}</td>
+                        <!-- Se quiser exibir o status na lista -->
+                        <td>
+                            <span [ngSwitch]="rental.status">
+                                <span *ngSwitchCase="'active'">Ativo</span>
+                                <span *ngSwitchCase="'completed'">Concluído</span>
+                                <span *ngSwitchCase="'canceled'">Cancelado</span>
+                                <span *ngSwitchDefault>Desconhecido</span>
+                            </span>
+                        </td>
                         <td class="text-center">
                             <div class="d-flex justify-content-center gap-2">
                                 <app-button text="Editar" icon="bi-pencil" color="primary" size="sm"
@@ -38,6 +48,8 @@
     </ng-container>
 
     <ng-template #emptyState>
-        <p class="text-center text-muted mt-3">🚨 Nenhum aluguel disponível no momento.</p>
+        <p class="text-center text-muted mt-3">
+            🚨 Nenhum aluguel disponível no momento.
+        </p>
     </ng-template>
 </div>

@@ -11,7 +11,7 @@ import { RentalStateService } from '../../../core/services/rental-state.service'
   standalone: true,
   imports: [CommonModule, ButtonComponent, FormatDatePipe, FormatCurrencyPipe],
   templateUrl: './rental-list.component.html',
-  styleUrl: './rental-list.component.scss',
+  styleUrls: ['./rental-list.component.scss'],
 })
 export class RentalListComponent {
   @Output() edit = new EventEmitter<Rental>();
@@ -20,11 +20,13 @@ export class RentalListComponent {
   constructor(public rentalState: RentalStateService) {}
 
   /**
-   * Computa a lista de aluguéis, garantindo que os valores de `userName` e `vehicleModel` existam.
+   * Em vez de chamar `this.rentalState.rentals()`, vamos chamar `rentalsWithMetadata()`
+   * para obter userName e vehicleModel corretamente.
    */
   rentals = computed(() =>
-    this.rentalState.rentals().map((rental) => ({
+    this.rentalState.rentalsWithMetadata().map((rental) => ({
       ...rental,
+      // Garantia de não-nulo, caso algo dê errado na associação
       userName: rental.userName ?? 'Desconhecido',
       vehicleModel: rental.vehicleModel ?? 'Desconhecido',
     }))

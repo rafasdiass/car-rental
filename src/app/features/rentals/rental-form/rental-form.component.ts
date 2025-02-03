@@ -36,7 +36,7 @@ import { FormatCurrencyPipe } from '../../../shared/pipes/format-currency.pipe';
     FormatCurrencyPipe,
   ],
   templateUrl: './rental-form.component.html',
-  styleUrl: './rental-form.component.scss',
+  styleUrls: ['./rental-form.component.scss'],
 })
 export class RentalFormComponent implements OnInit, OnChanges {
   @Input() rental: Rental | null = null;
@@ -54,15 +54,16 @@ export class RentalFormComponent implements OnInit, OnChanges {
     private userState: UserStateService,
     private vehicleState: VehicleStateService
   ) {
-    // ✅ Inicializa os signals corretamente dentro do construtor
+    // Inicia os signals com as listas atuais, se já estiverem carregadas.
     this.users.set(this.userState.users());
     this.vehicles.set(this.vehicleState.vehicles());
   }
 
   ngOnInit(): void {
     this.initializeForm();
-    this.userState.loadUsers(); // ✅ Garante que os usuários estão carregados
-    this.vehicleState.loadVehicles(); // ✅ Garante que os veículos estão carregados
+    // Garante que, se ainda não estiverem carregados, agora serão:
+    this.userState.loadUsers();
+    this.vehicleState.loadVehicles();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -96,6 +97,7 @@ export class RentalFormComponent implements OnInit, OnChanges {
 
   submit(): void {
     if (this.form.valid) {
+      // Emite o objeto Rental montado do form
       this.save.emit(this.form.value);
     }
   }
