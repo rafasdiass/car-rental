@@ -1,1 +1,135 @@
+<div class="dashboard-container">
+    <!-- Cabeçalho com título e data -->
+    <header class="dashboard-header">
+        <div class="header-left">
+            <h2 class="dashboard-title">
+                <i class="bi bi-speedometer2"></i>
+                Painel de Controle
+            </h2>
+        </div>
+        <div class="header-right">
+            <div class="current-date">
+                <i class="bi bi-calendar2-date me-1"></i>
+                <span>{{ currentDate | date:'fullDate' }}</span>
+            </div>
+        </div>
+    </header>
 
+    <hr />
+
+    <!-- Cartões de Resumo -->
+    <section class="summary-cards">
+        <div class="card summary-card">
+            <h3>
+                <i class="bi bi-truck me-1"></i>
+                Veículos
+            </h3>
+            <p>{{ summary.totalVehicles | number }}</p>
+        </div>
+        <div class="card summary-card">
+            <h3>
+                <i class="bi bi-person-circle me-1"></i>
+                Usuários
+            </h3>
+            <p>{{ summary.totalUsers | number }}</p>
+        </div>
+        <div class="card summary-card">
+            <h3>
+                <i class="bi bi-journal-text me-1"></i>
+                Aluguéis
+            </h3>
+            <p>{{ summary.totalRentals | number }}</p>
+        </div>
+    </section>
+
+    <hr />
+
+    <!-- Linha 1: Últimos Veículos e Aluguéis Ativos (divididos em colunas) -->
+    <section class="cards-row">
+        <!-- Últimos Veículos Cadastrados -->
+        <div class="card content-card">
+            <h4>
+                <i class="bi bi-clock-history me-1"></i>
+                Últimos Veículos Cadastrados
+            </h4>
+            <table class="table table-dark table-hover mt-2">
+                <thead>
+                    <tr>
+                        <th>Modelo</th>
+                        <th>Placa</th>
+                        <th>Ano</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let vehicle of latestVehicles | slice:0:3">
+                        <td>{{ vehicle.model | uppercase }}</td>
+                        <td>{{ vehicle.plate }}</td>
+                        <td>{{ vehicle.year }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Aluguéis Ativos organizados em duas colunas -->
+        <div class="card content-card active-rentals">
+            <h4>
+                <i class="bi bi-play-circle me-1"></i>
+                Aluguéis Ativos
+            </h4>
+            <div *ngIf="activeRentals.length > 0; else noActive">
+                <div class="rentals-grid">
+                    <div class="rental-item" *ngFor="let rental of activeRentals | slice:0:5">
+                        <div class="rental-info">
+                            <span class="rental-id">#{{ rental.id }}</span>
+                            <span class="rental-detail">
+                                <strong>Locatário:</strong> {{ rental.userName | uppercase }}
+                            </span>
+                            <span class="rental-detail">
+                                <strong>Veículo:</strong> {{ rental.vehicleModel }}
+                            </span>
+                            <span class="rental-detail">
+                                <strong>Período:</strong>
+                                {{ rental.startDate | date:'shortDate' }} -
+                                {{ rental.endDate | date:'shortDate' }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <ng-template #noActive>
+                <p class="no-data">Nenhum aluguel ativo no momento.</p>
+            </ng-template>
+        </div>
+    </section>
+
+    <hr />
+
+    <!-- Linha 2: Lista Resumida de Aluguéis -->
+    <section class="cards-row">
+        <div class="card content-card">
+            <h4>
+                <i class="bi bi-list-check me-1"></i>
+                Lista Resumida de Aluguéis
+            </h4>
+            <ul class="mt-2">
+                <li *ngFor="let item of shortRentals">
+                    <strong>Aluguel #{{ item.id }}</strong>
+                    (<span [ngSwitch]="item.status">
+                        <span *ngSwitchCase="'active'" class="status-active">
+                            <i class="bi bi-check-circle-fill"></i> Ativo
+                        </span>
+                        <span *ngSwitchCase="'completed'" class="status-completed">
+                            <i class="bi bi-check2-all"></i> Concluído
+                        </span>
+                        <span *ngSwitchCase="'canceled'" class="status-canceled">
+                            <i class="bi bi-x-circle-fill"></i> Cancelado
+                        </span>
+                        <span *ngSwitchDefault class="status-unknown">
+                            Desconhecido
+                        </span>
+                    </span>)
+                </li>
+            </ul>
+        </div>
+    </section>
+</div>

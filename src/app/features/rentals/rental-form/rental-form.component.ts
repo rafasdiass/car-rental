@@ -15,9 +15,9 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { Rental } from '../../../core/models/rental';
-import { User } from '../../../core/models/user';
-import { Vehicle } from '../../../core/models/vehicle';
+import { Rental } from '../../../core/models/rental.model';
+import { User } from '../../../core/models/user.model';
+import { Vehicle } from '../../../core/models/vehicle.model';
 import { RentalStateService } from '../../../core/services/rental-state.service';
 import { UserStateService } from '../../../core/services/user-state.service';
 import { VehicleStateService } from '../../../core/services/vehicle-state.service';

@@ -1,28 +1,227 @@
-.dashboard {
+:root {
+    --primary-bg: #1a1a1a;
+    /* Fundo principal do Dashboard */
+    --card-bg: #0f0f0f;
+    /* Fundo dos cards (bem escuro) */
+    --text-color: #f1f1f1;
+    /* Texto claro */
+    --highlight-color: #ff7f50;
+    /* Laranja vibrante para títulos */
+    --border-color: #444444;
+    /* Cor de bordas */
+    /* Cores para status */
+    --status-active: #28a745;
+    /* Verde para ativo */
+    --status-completed: #007bff;
+    /* Azul para concluído */
+    --status-canceled: #dc3545;
+    /* Vermelho para cancelado */
+    --status-unknown: #ffc107;
+    /* Amarelo para desconhecido */
+}
+
+/* Container principal */
+.dashboard-container {
+    min-height: 100vh;
+    background-color: var(--primary-bg);
+    color: var(--text-color);
+    padding: 24px;
+
+    hr {
+        margin: 16px 0;
+        border: none;
+        border-top: 1px solid var(--border-color);
+    }
+}
+
+/* Cabeçalho com título e data */
+.dashboard-header {
     display: flex;
     justify-content: space-between;
-    gap: 20px;
+    align-items: center;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
 
-    .stat-box {
-        padding: 16px;
+    .dashboard-title {
+        font-size: 24px;
+        color: var(--highlight-color);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        i {
+            font-size: 1.2rem;
+        }
+    }
+
+    .current-date {
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+
+        i {
+            font-size: 1rem;
+        }
+    }
+}
+
+/* Cartões de Resumo */
+.summary-cards {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 24px;
+
+    .summary-card {
+        flex: 1;
+        background-color: var(--card-bg);
         border-radius: 8px;
-        font-size: 18px;
-        text-align: center;
-        font-weight: bold;
+        padding: 16px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 
-        &.total {
-            background-color: var(--background-light);
+        h3 {
+            font-size: 18px;
+            margin-bottom: 8px;
+            color: var(--highlight-color);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        p {
+            font-size: 28px;
+            font-weight: bold;
+            margin: 0;
             color: var(--text-color);
         }
+    }
+}
 
-        &.active {
-            background-color: var(--primary-color);
-            color: var(--white);
+/* Linha de cards para conteúdos */
+.cards-row {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 24px;
+
+    .content-card {
+        flex: 1;
+        background-color: var(--card-bg);
+        border-radius: 8px;
+        padding: 16px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+
+        h4 {
+            font-size: 16px;
+            margin-bottom: 8px;
+            color: var(--highlight-color);
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
 
-        &.reservations {
-            background-color: var(--border-color);
+        .mt-2 {
+            margin-top: 8px;
+        }
+
+        /* Tabela para Últimos Veículos */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 8px;
+
+            th,
+            td {
+                padding: 8px 12px;
+                border: 1px solid var(--border-color);
+                /* Força o texto claro */
+                color: var(--text-color) !important;
+                text-align: left;
+            }
+
+            th {
+                color: #ddd;
+            }
+
+            tr:hover {
+                background-color: #3a3a3a;
+            }
+        }
+
+        /* Listas e grids (por exemplo, em Aluguéis Ativos) */
+        ul {
+            margin: 0;
+            padding-left: 20px;
+            list-style: none;
+
+            li {
+                margin-bottom: 6px;
+                /* Força o texto claro */
+                color: var(--text-color) !important;
+            }
+        }
+
+        /* Grid para exibir os itens de Aluguéis Ativos */
+        .rentals-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            /* Duas colunas */
+            gap: 12px;
+            margin-top: 8px;
+        }
+
+        .rental-item {
+            padding: 8px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            background-color: #222;
+        }
+
+        .rental-info {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            font-size: 14px;
             color: var(--text-color);
         }
+    }
+}
+
+/* Estilos para os status com ícones */
+.status-active {
+    color: var(--status-active);
+}
+
+.status-completed {
+    color: var(--status-completed);
+}
+
+.status-canceled {
+    color: var(--status-canceled);
+}
+
+.status-unknown {
+    color: var(--status-unknown);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .dashboard-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .summary-cards,
+    .cards-row {
+        flex-direction: column;
+    }
+
+    .summary-card,
+    .content-card {
+        margin-bottom: 16px;
+    }
+
+    .rentals-grid {
+        grid-template-columns: 1fr;
+        /* Em telas pequenas, uma coluna */
     }
 }

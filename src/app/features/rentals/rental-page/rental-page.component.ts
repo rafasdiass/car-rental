@@ -4,7 +4,7 @@ import { RentalFormComponent } from '../rental-form/rental-form.component';
 import { RentalListComponent } from '../rental-list/rental-list.component';
 import { ButtonComponent } from '../../../shared/components/button/button.component';
 import { RentalStateService } from '../../../core/services/rental-state.service';
-import { Rental } from '../../../core/models/rental'; // ✅ Importação correta do model Rental
+import { Rental } from '../../../core/models/rental.model'; // ✅ Importação correta do model Rental
 
 @Component({
   selector: 'app-rental-page',

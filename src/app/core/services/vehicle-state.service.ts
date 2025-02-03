@@ -1,5 +1,5 @@
 import { Injectable, signal } from '@angular/core';
-import { Vehicle } from '../models/vehicle';
+import { Vehicle } from '../models/vehicle.model';
 import { VehicleApiService } from './vehicle-api.service';
 
 @Injectable({

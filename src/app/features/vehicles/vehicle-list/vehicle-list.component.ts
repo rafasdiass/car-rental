@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Vehicle } from '../../../core/models/vehicle';
+import { Vehicle } from '../../../core/models/vehicle.model';
 import { ButtonComponent } from '../../../shared/components/button/button.component';
 
 @Component({

@@ -1,6 +1,6 @@
 import { Component, Output, EventEmitter, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Rental } from '../../../core/models/rental';
+import { Rental } from '../../../core/models/rental.model';
 import { ButtonComponent } from '../../../shared/components/button/button.component';
 import { FormatDatePipe } from '../../../shared/pipes/format-date.pipe';
 import { FormatCurrencyPipe } from '../../../shared/pipes/format-currency.pipe';

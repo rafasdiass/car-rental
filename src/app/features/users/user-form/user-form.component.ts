@@ -15,7 +15,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { User } from '../../../core/models/user';
+import { User } from '../../../core/models/user.model';
 import { ButtonComponent } from '../../../shared/components/button/button.component';
 import { FormatPhonePipe } from '../../../shared/pipes/format-phone.pipe'; // ✅ Adicionado Pipe corretamente
 import { FocusDirective } from '../../../shared/directives/focus.directive'; // ✅ Adicionado a diretiva de foco

@@ -1,10 +1,10 @@
 import { Injectable, signal, computed } from '@angular/core';
-import { Rental } from '../models/rental';
+import { Rental } from '../models/rental.model';
 import { RentalApiService } from './rental.service';
 import { UserStateService } from './user-state.service';
 import { VehicleStateService } from './vehicle-state.service';
-import { User } from '../models/user';
-import { Vehicle } from '../models/vehicle';
+import { User } from '../models/user.model';
+import { Vehicle } from '../models/vehicle.model';
 
 @Injectable({
   providedIn: 'root',

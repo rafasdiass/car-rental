@@ -15,7 +15,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { Vehicle } from '../../../core/models/vehicle';
+import { Vehicle } from '../../../core/models/vehicle.model';
 import { ButtonComponent } from '../../../shared/components/button/button.component';
 import { FocusDirective } from '../../../shared/directives/focus.directive';
 import { FormatTextPipe } from '../../../shared/pipes/format-text.pipe';

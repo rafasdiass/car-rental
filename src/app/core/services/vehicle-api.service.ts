@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from './api.service';
 import { Observable, catchError, tap, throwError, of } from 'rxjs';
-import { Vehicle } from '../models/vehicle';
+import { Vehicle } from '../models/vehicle.model';
 
 @Injectable({
   providedIn: 'root',
