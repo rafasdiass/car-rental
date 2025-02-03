@@ -1,0 +1,28 @@
+.dashboard {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+
+    .stat-box {
+        padding: 16px;
+        border-radius: 8px;
+        font-size: 18px;
+        text-align: center;
+        font-weight: bold;
+
+        &.total {
+            background-color: var(--background-light);
+            color: var(--text-color);
+        }
+
+        &.active {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+
+        &.reservations {
+            background-color: var(--border-color);
+            color: var(--text-color);
+        }
+    }
+}

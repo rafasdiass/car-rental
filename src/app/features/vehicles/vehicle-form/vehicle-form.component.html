@@ -1,0 +1,45 @@
+<form [formGroup]="form" (ngSubmit)="submit()">
+    <!-- Título Dinâmico -->
+    <h3 class="form-title">
+        {{ isEditing() ? '✏️ Editar Veículo' : '🚗 Cadastrar Veículo' }}
+    </h3>
+
+    <div class="mb-3">
+        <label for="plate" class="form-label">Placa</label>
+        <input id="plate" formControlName="plate" type="text" class="form-control" required appFocus
+            [value]="form.value.plate | formatPlate" />
+    </div>
+
+    <div class="mb-3">
+        <label for="chassis" class="form-label">Chassi</label>
+        <input id="chassis" formControlName="chassis" type="text" class="form-control" required />
+    </div>
+
+    <div class="mb-3">
+        <label for="renavam" class="form-label">Renavam</label>
+        <input id="renavam" formControlName="renavam" type="text" class="form-control" required />
+    </div>
+
+    <div class="mb-3">
+        <label for="model" class="form-label">Modelo</label>
+        <input id="model" formControlName="model" type="text" class="form-control" required
+            [value]="form.value.model | formatText" />
+    </div>
+
+    <div class="mb-3">
+        <label for="brand" class="form-label">Marca</label>
+        <input id="brand" formControlName="brand" type="text" class="form-control" required
+            [value]="form.value.brand | formatText" />
+    </div>
+
+    <div class="mb-3">
+        <label for="year" class="form-label">Ano</label>
+        <input id="year" formControlName="year" type="number" class="form-control" required />
+    </div>
+
+    <div class="d-flex justify-content-end gap-2">
+        <app-button [text]="isEditing() ? '✏️ Atualizar' : '💾 Salvar'" color="primary"
+            (action)="submit()"></app-button>
+        <app-button text="❌ Cancelar" color="secondary" (action)="cancelForm()"></app-button>
+    </div>
+</form>

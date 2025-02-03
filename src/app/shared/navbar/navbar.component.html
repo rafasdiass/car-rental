@@ -1,0 +1,17 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <!-- Logo -->
+        <a class="navbar-brand" href="#">
+            🚗 Car Rental Pro
+        </a>
+
+        <!-- Botões de navegação -->
+        <ul class="navbar-nav ms-auto">
+            <li class="nav-item" *ngFor="let route of navigationService.routes">
+                <app-button [text]="route.replace('/', '') | titlecase" [color]="isActive(route) ? 'primary' : 'light'"
+                    [icon]="getIcon(route)" (action)="navigate(route)">
+                </app-button>
+            </li>
+        </ul>
+    </div>
+</nav>

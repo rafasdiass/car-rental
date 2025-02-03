@@ -1,0 +1,30 @@
+{
+  "vehicles": [
+    {
+      "id": "2",
+      "plate": "XYZ-9876",
+      "chassis": "1HGBH41JXMN109186",
+      "renavam": "23456789011",
+      "model": "Civic",
+      "brand": "Honda",
+      "year": 2020
+    },
+    {
+      "id": "3",
+      "plate": "DEF-4567",
+      "chassis": "1HGCM82633A123456",
+      "renavam": "34567890123",
+      "model": "Focus",
+      "brand": "Ford",
+      "year": 2021
+    }
+  ],
+  "users": [
+    {
+      "id": "1",
+      "firstName": "John",
+      "lastName": "Smith",
+      "email": "john@example.com"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+<div class="container vehicle-page">
+    <h1 class="text-center my-4">🚗 Gerenciamento de Veículos</h1>
+
+    <!-- Botão para adicionar novo veículo -->
+    <div class="text-end mb-3">
+        <app-button text="➕ Adicionar Veículo" color="primary" (action)="openModal()"></app-button>
+    </div>
+
+    <!-- Lista de Veículos (Somente exibe a tabela, sem botões no componente pai) -->
+    <app-vehicle-list [vehicles]="vehicleState.vehicles()" (edit)="vehicleState.selectVehicle($event); openModal()"
+        (delete)="vehicleState.deleteVehicle($event)">
+    </app-vehicle-list>
+
+    <!-- Modal para Cadastro/Edição diretamente no formulário -->
+    <app-vehicle-form *ngIf="isModalOpen()" [vehicle]="vehicleState.selectedVehicle() ?? null"
+        (save)="vehicleState.saveVehicle($event); closeModal()" (cancel)="closeModal()">
+    </app-vehicle-form>
+</div>

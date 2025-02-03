@@ -1,0 +1,32 @@
+// 🔳 Botões Modernos
+app-button {
+    .btn {
+        font-weight: bold;
+        padding: 10px 16px;
+        border-radius: 8px;
+        transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        text-transform: uppercase;
+
+        &.btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            color: var(--white);
+
+            &:hover {
+                background-color: var(--primary-dark);
+                box-shadow: 0 4px 10px var(--shadow-dark);
+            }
+        }
+
+        &.btn-danger {
+            background-color: var(--highlight-color);
+            border-color: var(--highlight-color);
+            color: var(--white);
+
+            &:hover {
+                background-color: var(--highlight-dark);
+                box-shadow: 0 4px 10px var(--shadow-dark);
+            }
+        }
+    }
+}
