@@ -1,26 +1,15 @@
 :root {
     --primary-bg: #1a1a1a;
-    /* Fundo principal do Dashboard */
     --card-bg: #0f0f0f;
-    /* Fundo dos cards (bem escuro) */
     --text-color: #f1f1f1;
-    /* Texto claro */
     --highlight-color: #ff7f50;
-    /* Laranja vibrante para títulos */
     --border-color: #444444;
-    /* Cor de bordas */
-    /* Cores para status */
     --status-active: #28a745;
-    /* Verde para ativo */
     --status-completed: #007bff;
-    /* Azul para concluído */
     --status-canceled: #dc3545;
-    /* Vermelho para cancelado */
     --status-unknown: #ffc107;
-    /* Amarelo para desconhecido */
 }
 
-/* Container principal */
 .dashboard-container {
     min-height: 100vh;
     background-color: var(--primary-bg);
@@ -34,7 +23,6 @@
     }
 }
 
-/* Cabeçalho com título e data */
 .dashboard-header {
     display: flex;
     justify-content: space-between;
@@ -66,7 +54,6 @@
     }
 }
 
-/* Cartões de Resumo */
 .summary-cards {
     display: flex;
     gap: 16px;
@@ -97,7 +84,6 @@
     }
 }
 
-/* Linha de cards para conteúdos */
 .cards-row {
     display: flex;
     gap: 16px;
@@ -123,7 +109,6 @@
             margin-top: 8px;
         }
 
-        /* Tabela para Últimos Veículos */
         table {
             width: 100%;
             border-collapse: collapse;
@@ -133,7 +118,6 @@
             td {
                 padding: 8px 12px;
                 border: 1px solid var(--border-color);
-                /* Força o texto claro */
                 color: var(--text-color) !important;
                 text-align: left;
             }
@@ -147,7 +131,6 @@
             }
         }
 
-        /* Listas e grids (por exemplo, em Aluguéis Ativos) */
         ul {
             margin: 0;
             padding-left: 20px;
@@ -155,16 +138,13 @@
 
             li {
                 margin-bottom: 6px;
-                /* Força o texto claro */
                 color: var(--text-color) !important;
             }
         }
 
-        /* Grid para exibir os itens de Aluguéis Ativos */
         .rentals-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            /* Duas colunas */
             gap: 12px;
             margin-top: 8px;
         }
@@ -186,7 +166,6 @@
     }
 }
 
-/* Estilos para os status com ícones */
 .status-active {
     color: var(--status-active);
 }
@@ -203,7 +182,6 @@
     color: var(--status-unknown);
 }
 
-/* Responsividade */
 @media (max-width: 768px) {
     .dashboard-header {
         flex-direction: column;
@@ -222,6 +200,5 @@
 
     .rentals-grid {
         grid-template-columns: 1fr;
-        /* Em telas pequenas, uma coluna */
     }
 }
