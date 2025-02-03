@@ -333,7 +333,7 @@ rafasdiasdev@gmail.com
   - **UserListComponent:** Lista os usuários cadastrados.
 - **Rentals:**
   - **RentalPageComponent:** Componente pai para a gestão do histórico de locações.
-  - **RentalHistoryComponent:** Exibe o histórico de aluguéis, permitindo consulta e gerenciamento.
+  - **RentalFormComponent:** Exibe o histórico de aluguéis, permitindo consulta e gerenciamento.
 
 **Shared:**
 - **Components:** Botões, tabelas e cards reutilizáveis.
