@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ApiService {
-  private readonly baseUrl = 'http://localhost:3000';
+  private readonly baseUrl = 'https://fakebackcar.onrender.com';
 
   constructor(private http: HttpClient) {} 
   get<T>(endpoint: string): Observable<T> {
